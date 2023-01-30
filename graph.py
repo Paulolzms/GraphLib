@@ -103,14 +103,16 @@ class Graph:
         desc[s] = 1
         while S != []:
             u = S[-1]
-            del(S[-1])
+            desempilhar = True
             for v in self.adj_list[u]:
                 if desc[v] == 0:
+                    desempilhar = False
                     S.append(v)
                     R.append(v)
                     desc[v] = 1
-                else:
-                    del(S[u])
+                    break
+            if desempilhar:
+                S.pop()
         return R
 
     def __str__(self):
